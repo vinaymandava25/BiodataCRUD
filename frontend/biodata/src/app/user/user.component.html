@@ -1,0 +1,60 @@
+<div class="container">
+  
+    <form class="form-group" [formGroup]="createUserForm">
+      <label>
+        Name:
+        <input type="text" class="form-control" formControlName="name">
+      </label>
+
+      <label>
+        Email:
+        <input type="text" class="form-control" formControlName="email">
+      </label>
+
+      <label>
+        Mobile Number:
+        <input type="text" class="form-control" formControlName="mobileNumber">
+      </label>
+      <label>
+        Job Title:
+        <input type="text" class="form-control" formControlName="jobTitle">
+      </label>
+
+
+      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid" (click)="createUser()">Create new
+        user</button>
+
+    </form>
+  
+
+  
+    <form class="form-group" [formGroup]="userForm" *ngFor="let user of users">
+      <label><input type="hidden" formControlName="uid" #uid value={{user.uid}}></label>
+      <label>
+        Name:
+        <input type="text" class="form-control" formControlName="name" #name value={{user.name}}>
+      </label>
+
+      <label>
+        Email:
+        <input type="text" class="form-control" formControlName="email" #email value={{user.email}}>
+      </label>
+
+      <label>
+        Mobile Number:
+        <input type="text" class="form-control" formControlName="mobileNumber" #mobileNumber
+          value={{user.mobileNumber}}>
+      </label>
+      <label>
+        Job Title:
+        <input type="text" class="form-control" formControlName="jobTitle" #jobTitle value={{user.jobTitle}}>
+      </label>
+
+      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid"
+        (click)="update(uid.value,name.value,email.value,mobileNumber.value,jobTitle.value)">Update</button>
+      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid"
+        (click)="delete(user.uid)">Delete</button>
+
+    </form>
+  
+</div>
