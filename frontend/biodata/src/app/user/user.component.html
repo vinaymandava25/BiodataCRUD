@@ -3,25 +3,25 @@
     <form class="form-group" [formGroup]="createUserForm">
       <label>
         Name:
-        <input type="text" class="form-control" formControlName="name">
+        <input type="text" class="form-control" formControlName="name" required>
       </label>
 
       <label>
         Email:
-        <input type="text" class="form-control" formControlName="email">
+        <input type="text" class="form-control" formControlName="email" required>
       </label>
 
       <label>
         Mobile Number:
-        <input type="text" class="form-control" formControlName="mobileNumber">
+        <input type="text" class="form-control" formControlName="mobileNumber" required>
       </label>
       <label>
         Job Title:
-        <input type="text" class="form-control" formControlName="jobTitle">
+        <input type="text" class="form-control" formControlName="jobTitle" required>
       </label>
 
 
-      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid" (click)="createUser()">Create new
+      <button type="submit" class="btn btn-secondary"  (click)="createUser()">Create new
         user</button>
 
     </form>
@@ -32,7 +32,7 @@
       <label><input type="hidden" formControlName="uid" #uid value={{user.uid}}></label>
       <label>
         Name:
-        <input type="text" class="form-control" formControlName="name" #name value={{user.name}}>
+        <input type="text" class="form-control" formControlName="name" #name value={{user.name}} required>
       </label>
 
       <label>
@@ -50,9 +50,9 @@
         <input type="text" class="form-control" formControlName="jobTitle" #jobTitle value={{user.jobTitle}}>
       </label>
 
-      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid"
+      <button type="submit" class="btn btn-secondary" 
         (click)="update(uid.value,name.value,email.value,mobileNumber.value,jobTitle.value)">Update</button>
-      <button type="submit" class="btn btn-secondary" [disabled]="!userForm.valid"
+      <button type="submit" class="btn btn-secondary" 
         (click)="delete(user.uid)">Delete</button>
 
     </form>

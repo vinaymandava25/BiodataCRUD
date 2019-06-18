@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 
 @Component({
@@ -29,11 +29,11 @@ export class UserComponent implements OnInit {
     jobTitle: ['']
   });
   createUserForm = this.fb.group({
-    uid: [''],
-    name: [''],
-    email: [''],
-    mobileNumber: [''],
-    jobTitle: ['']
+    uid: ['',Validators.required],
+    name: ['',Validators.required],
+    email: ['',Validators.required],
+    mobileNumber: ['',Validators.required],
+    jobTitle: ['',Validators.required]
   });
 
   update(uid, name, email, mobileNumber, jobTitle) {
@@ -60,10 +60,14 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.saveUser(this.createUserForm.value).subscribe(
-      data => this.createdUser = data
-    );
-    window.location.reload();
+    if(this.createUserForm.value != null ){
+      this.userService.saveUser(this.createUserForm.value).subscribe(
+        data => this.createdUser = data
+      );
+    }else{
+      alert("User cannot be created,Form must be filled completely")
+    }
+        window.location.reload();
   }
 
 }
